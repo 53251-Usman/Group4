@@ -1,0 +1,31 @@
+
+name: CI Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check HTML file
+        run: test -f index.html
+
+      - name: Check README file
+        run: test -f README.md || echo "README will be added later"
+
+      - name: Check HTML content
+        run: grep -q "Group4 Web Application" index.html
+
+      - name: Report success
+        run: echo "All CI checks passed!"
