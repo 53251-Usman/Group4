@@ -3,17 +3,328 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Group4 CI/CD Project</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Group4 CI/CD web application project">
+  <title>Group4 | CI/CD Project</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #172033;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #101828;
+      color: white;
+      padding: 18px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: #68e0a5;
+    }
+
+    nav {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      color: #68e0a5;
+    }
+
+    .hero {
+      padding: 85px 7%;
+      text-align: center;
+      background: linear-gradient(135deg, #172554, #176b87);
+      color: white;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 6px 15px;
+      border: 1px solid #8deac0;
+      border-radius: 30px;
+      color: #a8f5cf;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 52px);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: 0 auto 28px;
+      color: #e0eaf8;
+    }
+
+    .btn {
+      display: inline-block;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 22px;
+      background: #55d99a;
+      color: #10251c;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    .btn:hover {
+      background: #8aefbd;
+      transform: translateY(-1px);
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: white;
+      border: 1px solid white;
+    }
+
+    section {
+      padding: 65px 7%;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .section-intro {
+      text-align: center;
+      color: #657187;
+      margin-bottom: 32px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      padding: 25px;
+      background: white;
+      border-radius: 14px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 5px 20px #1720330a;
+    }
+
+    .card .icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #657187;
+    }
+
+    .pipeline {
+      background: #eaf1fa;
+    }
+
+    .status {
+      margin: 25px auto 0;
+      max-width: 650px;
+      background: white;
+      padding: 22px;
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid #d7e2ed;
+    }
+
+    #test-result {
+      margin-top: 15px;
+      font-weight: bold;
+      overflow-wrap: anywhere;
+    }
+
+    .about {
+      max-width: 750px;
+      margin: auto;
+      text-align: center;
+    }
+
+    footer {
+      background: #101828;
+      color: #dce5f2;
+      text-align: center;
+      padding: 25px;
+    }
+
+    footer a {
+      color: #68e0a5;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        justify-content: center;
+      }
+
+      nav {
+        justify-content: center;
+        gap: 14px;
+      }
+
+      .hero {
+        padding: 60px 6%;
+      }
+
+      section {
+        padding: 45px 6%;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Group4 Web Application</h1>
-  <p>Our website is being tested and deployed using GitHub Actions.</p>
-  <p>Feature update for CI/CD assignment.</p>
+  <header>
+    <div class="logo">Group<span>4</span></div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#features">Features</a>
+      <a href="#pipeline">CI/CD</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
 
-  <button onclick="document.getElementById('msg').textContent='Website is working!'">
-    Test Application
-  </button>
+  <main>
+    <section class="hero" id="home">
+      <span class="tag">Student Project · CI/CD</span>
+      <h1>Group4 Web Application</h1>
+      <p>
+        Welcome to our web application. This project demonstrates
+        continuous integration and continuous deployment using
+        GitHub Actions and GitHub Pages.
+      </p>
+      <a class="btn" href="#pipeline">Explore Pipeline</a>
+      <button class="btn secondary" id="test-button">
+        Test Application
+      </button>
+      <p id="test-result" role="status" aria-live="polite"></p>
+    </section>
 
-  <p id="msg"></p>
+    <section id="features">
+      <h2 class="section-title">Project Features</h2>
+      <p class="section-intro">
+        A simple application demonstrating modern development practices.
+      </p>
+
+      <div class="cards">
+        <article class="card">
+          <div class="icon">💻</div>
+          <h3>Web Application</h3>
+          <p>A responsive website built with HTML, CSS and JavaScript.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">⚙️</div>
+          <h3>Continuous Integration</h3>
+          <p>GitHub Actions automatically validates changes pushed to the repository.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">🚀</div>
+          <h3>Continuous Deployment</h3>
+          <p>A deployment workflow publishes the website to GitHub Pages.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="pipeline" id="pipeline">
+      <h2 class="section-title">Our CI/CD Pipeline</h2>
+      <p class="section-intro">
+        From code changes to a published website.
+      </p>
+
+      <div class="cards">
+        <article class="card">
+          <h3>01. Code</h3>
+          <p>Develop and update files in GitHub.</p>
+        </article>
+        <article class="card">
+          <h3>02. Test</h3>
+          <p>Run automated checks using GitHub Actions.</p>
+        </article>
+        <article class="card">
+          <h3>03. Deploy</h3>
+          <p>Publish the site through the deployment workflow.</p>
+        </article>
+      </div>
+
+      <div class="status">
+        <h3>Application Test</h3>
+        <p>Click the button above to verify that JavaScript is working.</p>
+        <p id="pipeline-result">Waiting for application test...</p>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="about">
+        <h2 class="section-title">About Our Project</h2>
+        <p>
+          Group4 demonstrates how developers can manage source code,
+          validate changes and automate website deployment.
+          The project uses GitHub for version control and GitHub Actions
+          for workflow automation.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Group4 | CI/CD Web Application</p>
+    <p>Built with HTML, CSS, JavaScript and GitHub Actions.</p>
+  </footer>
+
+  <script>
+    const testButton = document.getElementById("test-button");
+    const testResult = document.getElementById("test-result");
+    const pipelineResult = document.getElementById("pipeline-result");
+
+    testButton.addEventListener("click", function () {
+      const message = "Success! Group4 Web Application is working.";
+
+      testResult.textContent = message;
+      pipelineResult.textContent = message;
+    });
+  </script>
 </body>
 </html>
